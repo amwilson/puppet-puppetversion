@@ -11,6 +11,14 @@ describe 'puppetversion', :type => :class do
         :rubyversion     => '1.9.3'
     } }
 
+    let(:pre_condition){
+      """
+      Package {
+        provider => 'apt',
+      }
+      """
+    }
+
     let(:params) {{ :version => '3.4.2'}}
 
     it { should contain_package('puppet').with_ensure('3.4.2-1puppetlabs1') }
@@ -46,6 +54,14 @@ describe 'puppetversion', :type => :class do
         :agent_rundir    => '/var/lib/puppet/run',
         :rubyversion     => '1.9.3'
     } }
+
+    let(:pre_condition){
+      """
+      Package {
+        provider => 'apt',
+      }
+      """
+    }
 
     let(:params) {{ :version => '3.4.3'}}
 
@@ -95,6 +111,14 @@ describe 'puppetversion', :type => :class do
       :operatingsystemmajrelease => '6'
     }}
 
+    let(:pre_condition){
+      """
+      Package {
+        provider => 'yum',
+      }
+      """
+    }
+
     let(:params) {{ :version => '3.4.2'}}
 
     it { should contain_package('puppet').with_ensure('3.4.2-1.el6').that_requires('Class[puppetlabs_yum]') }
@@ -112,6 +136,14 @@ describe 'puppetversion', :type => :class do
       :pper_installed            => 'false',
       :operatingsystemmajrelease => '7'
     }}
+
+    let(:pre_condition){
+      """
+      Package {
+        provider => 'yum',
+      }
+      """
+    }
 
     let(:params) {{ :version => '3.4.2'}}
 
